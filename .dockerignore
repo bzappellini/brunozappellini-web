@@ -1,0 +1,18 @@
+# Ignorar dependencias locales (se reinstalan en la imagen)
+node_modules
+# Caché de Next
+.next/cache
+# Git metadata
+.git
+.gitignore
+# Logs
+*.log
+# Editor
+.vscode
+# Archivos temporales
+*.swp
+.DS_Store
+# Tests (si no son necesarios en producción)
+__tests__
+# Entornos locales (se inyectan con variables en tiempo de ejecución)
+.env*

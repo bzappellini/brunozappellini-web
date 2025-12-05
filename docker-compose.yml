@@ -1,0 +1,26 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Ajusta a false si el pnpm-lock.yaml aún no está sincronizado
+        FROZEN_LOCKFILE: "true"
+    container_name: personal-website
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+    # Para desarrollo podrías montar el código:
+    # volumes:
+    #   - .:/app
+    #   - /app/node_modules
+    restart: unless-stopped
+    # healthcheck opcional
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
