@@ -14,7 +14,7 @@ export default function About() {
           </p>
 
           <p>
-            Apasionado por documentar, optimizar y escalar infraestructura, tengo una vocación genuina por <span className="text-primary-foreground font-semibold">compartir conocimiento</span>. Actualmente soy educador universitario en UNPSJB y UDC, enseñando materias como Administración de Redes y Seguridad, Redes y Transmisión de Datos, y cursos especializados en DevOps y GitOps.
+            Apasionado por documentar, optimizar y escalar infraestructura, tengo una vocación genuina por <span className="text-primary-foreground font-semibold">compartir conocimiento</span>. Actualmente soy profesor adjunto universitario en UNPSJB, enseñando materias como Administración de Redes y Seguridad, Redes y Transmisión de Datos, y cursos especializados en DevOps y GitOps.
           </p>
 
           <p className="italic text-muted-foreground">
