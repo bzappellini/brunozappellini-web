@@ -3,7 +3,7 @@ export default function Contact() {
     <section id="contact" className="py-20 px-6 bg-primary border-t border-border">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 text-primary-foreground">Contacto</h2>
-        
+
         <p className="text-lg text-muted-foreground mb-12">
           ¿Tienes un proyecto o quieres conversar sobre infraestructura, DevOps o educación?
         </p>
@@ -22,7 +22,7 @@ export default function Contact() {
 
           {/* LinkedIn */}
           <a
-            href="https://linkedin.com/in/bruno-zappellini"
+            href="https://linkedin.com/in/bruno-zappellini-9b303613/"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-3 px-6 py-3 bg-card border border-border rounded-lg hover:border-accent/50 hover:bg-card/80 transition-all"
