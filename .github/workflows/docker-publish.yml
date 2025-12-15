@@ -49,3 +49,34 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      
+      - name: Update deploy repo (bump image tag in traefik-rpi)
+        env:
+          DEPLOY_REPO_TOKEN: ${{ secrets.DEPLOY_REPO_TOKEN }} # PAT con permiso write al repo traefik-rpi
+          IMAGE_TAG: sha-${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          REPO_B="bzappellini/traefik-rpi"
+          FILE="docker-compose.yml"
+          IMAGE="ghcr.io/bzappellini/brunozappellini-web"
+
+          git clone "https://x-access-token:${DEPLOY_REPO_TOKEN}@github.com/${REPO_B}.git"
+          cd traefik-rpi
+
+          # Reemplaza SOLO la línea que contiene la imagen (y conserva el indent)
+          sed -i -E "s|^(\s*image:\s*)${IMAGE}:[^[:space:]]+|\1${IMAGE}:${IMAGE_TAG}|g" "${FILE}"
+
+          # Si no cambió nada, no comitea
+          if git diff --quiet; then
+            echo "No changes detected in ${FILE}. Skipping commit."
+            exit 0
+          fi
+
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add "${FILE}"
+          git commit -m "deploy: bump brunozappellini-web to ${IMAGE_TAG}"
+          git push
+
