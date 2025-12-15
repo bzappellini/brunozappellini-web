@@ -52,10 +52,16 @@ jobs:
       
       - name: Update deploy repo (bump image tag in traefik-rpi)
         env:
-          DEPLOY_REPO_TOKEN: ${{ secrets.DEPLOY_REPO_TOKEN }} # PAT con permiso write al repo traefik-rpi
+          # PAT con permiso write al repo traefik-rpi
+          DEPLOY_REPO_TOKEN: ${{ secrets.DEPLOY_REPO_TOKEN }}
           IMAGE_TAG: sha-${{ github.sha }}
         run: |
           set -euo pipefail
+
+          if [ -z "${DEPLOY_REPO_TOKEN}" ]; then
+            echo "Error: DEPLOY_REPO_TOKEN secret is not set or empty."
+            exit 1
+          fi
 
           REPO_B="bzappellini/traefik-rpi"
           FILE="docker-compose.yml"
