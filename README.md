@@ -127,7 +127,7 @@ public/         # Assets estáticos
 - Cache de dependencias más fina usando `turbo` o similar.
 
 ## ✅ Healthcheck
-El `docker-compose.yml` incluye un healthcheck simple usando `wget` contra `/`.
+El `docker-compose.yml` incluye un healthcheck simple usando `wget` contra `127.0.0.1`. Se usa IPv4 explícita para evitar falsos negativos con `localhost` en Alpine.
 
 ## 🔎 Notas de operación
 - El `Dockerfile` usa `output: "standalone"` configurado en Next.js para reducir la imagen final.
