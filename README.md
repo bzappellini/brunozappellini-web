@@ -11,6 +11,7 @@ Proyecto de sitio personal construido con Next.js 16, React 19 y TailwindCSS.
 
 ## 🚀 Ejecución local (sin Docker)
 ```bash
+corepack enable
 pnpm install
 pnpm dev
 ```
@@ -18,6 +19,7 @@ Visita: http://localhost:3000
 
 Build de producción local:
 ```bash
+corepack enable
 pnpm build
 pnpm start
 ```
@@ -39,6 +41,7 @@ docker build --build-arg FROZEN_LOCKFILE=false -t personal-website:latest .
 Luego actualiza tu lockfile local ejecutando:
 
 ```bash
+corepack enable
 pnpm install
 ```
 
@@ -52,6 +55,8 @@ docker build -t personal-website:latest .
 ```bash
 docker run --rm -p 3000:3000 personal-website:latest
 ```
+
+La imagen expone la app en modo producción usando el servidor standalone de Next.js.
 
 ### Docker Compose
 Se proporciona `docker-compose.yml` para simplificar.
@@ -67,6 +72,11 @@ docker compose logs -f web
 Detener:
 ```bash
 docker compose down
+```
+
+Validar la configuración resuelta de Compose:
+```bash
+docker compose config
 ```
 
 ## 🧩 Variables de entorno
@@ -118,6 +128,10 @@ public/         # Assets estáticos
 
 ## ✅ Healthcheck
 El `docker-compose.yml` incluye un healthcheck simple usando `wget` contra `/`.
+
+## 🔎 Notas de operación
+- El `Dockerfile` usa `output: "standalone"` configurado en Next.js para reducir la imagen final.
+- `FROZEN_LOCKFILE=true` es el valor recomendado para CI y producción; usar `false` debería ser una excepción temporal.
 
 ## 🧪 Test (pendiente)
 Puedes agregar una carpeta `__tests__` y ejecutarlos con tu framework preferido (Jest / Vitest). Actualmente no incluido.

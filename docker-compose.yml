@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        # Ajusta a false si el pnpm-lock.yaml aún no está sincronizado
+        # Ajusta a false solo para destrabar un build local con lockfile desactualizado
         FROZEN_LOCKFILE: "true"
     container_name: personal-website
     ports:
@@ -12,6 +12,7 @@ services:
     environment:
       NODE_ENV: production
       NEXT_TELEMETRY_DISABLED: "1"
+      PORT: "3000"
     # Para desarrollo podrías montar el código:
     # volumes:
     #   - .:/app

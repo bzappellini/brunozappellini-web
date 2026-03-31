@@ -17,21 +17,8 @@ export const metadata: Metadata = {
   description: 'DevOps/SRE specialist, infrastructure architect, and university educator. Expertise in Kubernetes, networking, security, and automation.',
   keywords: ['DevOps', 'SRE', 'Kubernetes', 'Infrastructure', 'Security', 'Networking', 'Automation', 'Bruno Zappellini'],
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-    apple: '/apple-icon.png',
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
   },
   openGraph: {
     title: 'Bruno Damián Zappellini - DevOps/SRE Engineer',
@@ -51,6 +38,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const shouldTrackAnalytics = process.env.NODE_ENV === 'production' && process.env.VERCEL === '1'
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfilePage",
@@ -75,7 +64,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
-        <Analytics />
+        {shouldTrackAnalytics ? <Analytics /> : null}
       </body>
     </html>
   )

@@ -7,11 +7,12 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/hero-bg.png"
+          src="/hero-bg.webp"
           alt="Network Background"
           fill
           className="object-cover opacity-20"
           priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/50 to-primary" />
       </div>
@@ -20,11 +21,12 @@ export default function Hero() {
         {/* Avatar */}
         <div className="relative w-40 h-40 mx-auto mb-8 rounded-full border-4 border-accent/20 shadow-[0_0_30px_rgba(var(--accent),0.3)] overflow-hidden">
           <Image
-            src="/avatar.png"
+            src="/avatar.webp"
             alt="Bruno Damián Zappellini"
             fill
             className="object-cover"
             priority
+            sizes="160px"
           />
         </div>
 
